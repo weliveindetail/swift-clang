@@ -62,6 +62,10 @@ if(LLVM_BUILD_EXTERNAL_COMPILER_RT AND EXISTS ${COMPILER_RT_SRC_ROOT}/)
     set(COMPILER_RT_LIBCXX_DEPENDENCY "cxx-headers")
   endif()
 
+  if(TARGET LLVMTestingSupport)
+    set(COMPILER_RT_LIBCXX_DEPENDENCY "LLVMTestingSupport")
+  endif()
+
   ExternalProject_Add(compiler-rt
     DEPENDS llvm-config clang ${COMPILER_RT_LIBCXX_DEPENDENCY}
     PREFIX ${COMPILER_RT_PREFIX}
